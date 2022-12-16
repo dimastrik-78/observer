@@ -669,7 +669,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sun: {fileID: 35996608}
-  timeStage: 5
+  sky: {fileID: 0}
+  star: {fileID: 0}
+  timeStage: 20
 --- !u!1 &811875458
 GameObject:
   m_ObjectHideFlags: 0

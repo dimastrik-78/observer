@@ -2,7 +2,7 @@ namespace Interface
 {
     public interface IObserver
     {
-        void AddObservable(IObservable observable);
+        void OnNotify();
         void ConcreteObserver();
     }
 }

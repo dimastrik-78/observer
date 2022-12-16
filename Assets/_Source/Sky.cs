@@ -5,20 +5,17 @@ using UnityEngine;
 
 public class Sky : MonoBehaviour, IObserver
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private IObservable _observable;
 
     public void AddObservable(IObservable observable)
     {
+        _observable = observable;
+        
+    }
+
+    public void OnNotify()
+    {
+        ConcreteObserver();
         
     }
 

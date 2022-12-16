@@ -2,7 +2,11 @@
 {
     public interface IObservable
     {
-        void Update();
+        void Register(IObserver observer);
+
+        void Remove(IObserver observer);
+
+        void Notify();
 
         float ConcreteObservable();
     }

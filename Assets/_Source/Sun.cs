@@ -7,14 +7,9 @@ using DG.Tweening;
 public class Sun : MonoBehaviour, IObserver
 {
     private IObservable _observable;
+    private Transform _transform;
     private float _speedRotation;
     private float _deltaTime;
-    
-    void Update()
-    {
-        ConcreteObserver();
-        transform.RotateAround(Vector3.zero, Vector3.back, 1 / 4);
-    }
 
     public void AddObservable(IObservable observable)
     {
@@ -22,8 +17,14 @@ public class Sun : MonoBehaviour, IObserver
         
     }
 
+    public void OnNotify()
+    {
+        ConcreteObserver();
+        transform.RotateAround(Vector3.zero, Vector3.back, 0.25f);
+    }
+
     public void ConcreteObserver()
     {
-        _deltaTime = _observable.ConcreteObservable();
+        // _deltaTime = _observable.ConcreteObservable();
     }
 }
