@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using Interface;
 using UnityEngine;
 
-public class CheckTime : IObservable
+public class Timer : IObservable
 {
-    private List<IObserver> _observers;
+    private readonly List<IObserver> _observers;
     private readonly float _startTime;
+    private int _stageDay;
     private float _time;
     
-    public CheckTime(float timeStage)
+    public Timer(float timeStage)
     {
         _observers = new List<IObserver>();
         
@@ -19,7 +20,7 @@ public class CheckTime : IObservable
     
     public void Update()
     {
-        Timer();
+        Check();
     }
 
     public void Register(IObserver observer)
@@ -36,18 +37,22 @@ public class CheckTime : IObservable
     {
         for (int i = 0; i < _observers.Count; i++)
         {
-            _observers[i].OnNotify();
+            _observers[i].OnNotify(_stageDay);
         }
     }
 
-    public float ConcreteObservable() => _time;
+    // public float ConcreteObservable() => _time;
 
-    private void Timer()
+    private void Check()
     {
         _time -= Time.deltaTime;
         Notify();
         if (_time <= 0)
         {
+            _stageDay++;
+            if (_stageDay >= 4)
+                _stageDay = 0;
+            
             _time = _startTime;
         }
     }

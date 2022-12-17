@@ -8,6 +8,6 @@
 
         void Notify();
 
-        float ConcreteObservable();
+        // float ConcreteObservable();
     }
 }

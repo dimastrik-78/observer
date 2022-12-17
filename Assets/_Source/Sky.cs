@@ -1,26 +1,30 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using Interface;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Sky : MonoBehaviour, IObserver
 {
-    private IObservable _observable;
+    [SerializeField] private Color[] colors;
 
-    public void AddObservable(IObservable observable)
+    private Image _image;
+    private float _changeTime;
+
+    public void Construct(float timeStage)
     {
-        _observable = observable;
-        
+        _changeTime = timeStage;
+    }
+    
+    private void Start()
+    {
+        _image = GetComponent<Image>();
     }
 
-    public void OnNotify()
+    public void OnNotify(int stageDay)
     {
-        ConcreteObserver();
-        
-    }
-
-    public void ConcreteObserver()
-    {
-        
+        _image.DOColor(colors[stageDay], _changeTime);
     }
 }

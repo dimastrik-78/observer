@@ -6,25 +6,17 @@ using DG.Tweening;
 
 public class Sun : MonoBehaviour, IObserver
 {
-    private IObservable _observable;
-    private Transform _transform;
-    private float _speedRotation;
+    [SerializeField] private Transform[] positions;
+    private float _speedMove;
     private float _deltaTime;
 
-    public void AddObservable(IObservable observable)
+    public void Construct(float timeStage)
     {
-        _observable = observable;
-        
+        _speedMove = timeStage;
     }
 
-    public void OnNotify()
+    public void OnNotify(int stageDay)
     {
-        ConcreteObserver();
-        transform.RotateAround(Vector3.zero, Vector3.back, 0.25f);
-    }
-
-    public void ConcreteObserver()
-    {
-        // _deltaTime = _observable.ConcreteObservable();
+        transform.DOMove(positions[stageDay].position, _speedMove);
     }
 }
